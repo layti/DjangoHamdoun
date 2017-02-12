@@ -1,0 +1,52 @@
+{% load static %}
+<html>
+	<head>
+		<title>All Modules</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+		<script src="{% static 'js/angular.min.js' %}"></script>
+		<style>
+			.blue {
+				color: #036564;
+			}
+			.bold {
+				font-weight: bold;
+			}
+			.center {
+				text-align: center;
+			}
+			.uppercase {
+				text-transform: uppercase;
+			}
+		</style>
+	</head>
+	<body ng-app>
+		<div class="container">
+			<span ng-include="'{% static 'header.html' %}'"></span>
+
+			<br>
+			<h3 class="blue bold center uppercase">- Our modules -</h3>
+			<table class="table table-striped">
+				<tr>
+					<th>Module Name</th>
+					<th>Module Department</th>
+					<th>Module Start Year</th>
+				</tr>
+				{% for module in all_modules %}
+				<tr>
+					<td>{{ module.name }}</td>
+					<td>{{ module.department }}</td>
+					<td>{{ module.start_year }}</td>
+				</tr>
+				{% empty %}
+				<tr>
+					<td colspan="3" class="center">Sorry! No available modules</td>
+				</tr>
+				{% endfor %}
+			</table>
+			<br>
+
+			<span ng-include="'{% static 'footer.html' %}'"></span>
+		</div>
+	</body>
+</html>

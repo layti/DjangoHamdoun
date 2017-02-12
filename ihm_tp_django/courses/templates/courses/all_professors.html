@@ -1,0 +1,54 @@
+{% load static %}
+<html>
+	<head>
+		<title>All professors</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+		<script src="{% static 'js/angular.min.js' %}"></script>
+		<style>
+			.blue {
+				color: #036564;
+			}
+			.bold {
+				font-weight: bold;
+			}
+			.center {
+				text-align: center;
+			}
+			.uppercase {
+				text-transform: uppercase;
+			}
+		</style>
+	</head>
+	<body ng-app>
+		<div class="container">
+			<span ng-include="'{% static 'header.html' %}'"></span>
+
+			<br>
+			<h3 class="blue bold center uppercase">- Our professors -</h3>
+			<table class="table table-striped">
+				<tr>
+					<th>Professor Name</th>
+					<th>Professor Speciality</th>
+					<th>Professor BirthDay</th>
+					<th>Professor Country</th>
+				</tr>
+				{% for professor in all_professors %}
+				<tr>
+					<td>{{ professor.name }}</td>
+					<td>{{ professor.speciality }}</td>
+					<td>{{ professor.birth_day }}</td>
+					<td>{{ professor.country }}</td>
+				</tr>
+				{% empty %}
+				<tr>
+					<td colspan="4" class="center">Sorry! No available professors</td>
+				</tr>
+				{% endfor %}
+			</table>
+			<br>
+
+			<span ng-include="'{% static 'footer.html' %}'"></span>
+		</div>
+	</body>
+</html>
